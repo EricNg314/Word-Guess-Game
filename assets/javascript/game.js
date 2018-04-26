@@ -19,7 +19,7 @@ var currWordArray = [];
 var currWordRevealed = [];
 var currWordDisplay = "";
 var prevGuesses = []; //Creating empty array.
-var gameInitiated;
+var gameInitiated = "false";
 
 var selectedWord = potentialWords[Math.floor(Math.random() * potentialWords.length)];
 console.log(selectedWord); //Display word selected by computer.
@@ -37,6 +37,7 @@ for (var j = 0; j < currWordRevealed.length; j++) {
 console.log(currWordArray);
 console.log(currWordRevealed);
 console.log(currWordDisplay);
+console.log("Game initiated: " + gameInitiated);
 
 document.onkeyup = function () {
     //Storing user input as "userGuess" and turning it lower case for comparison.
@@ -44,21 +45,24 @@ document.onkeyup = function () {
     console.log(userGuess); //Display for reference of user choice.
 
 
-
     if (userGuess === " ") {
         gameInitiated = true;
-        //Setting information to be provided to html with id=game.
-        var html = "<p>What food am I thinking?</p>" +
-            "<p>Current Word</p>" +
-            "<p>" + currWordDisplay + "</p>" +
-            "<p> _________________________ </p>" +
-            "<p>Wins: " + scoreWin + "</p>" +
-            "<p>Losses: " + scoreLoss + "</p>" +
-            "<p>Guesses Left: " + guessesLeft + "</p>" +
-            "<p>Your guesses so far: " + prevGuesses + "</p>";
+        console.log("Game initiated: " + gameInitiated);
 
-        //Set id game to be html variable.
-        document.querySelector('#game').innerHTML = html;
+        outputDisplay();
+
+        // //Setting information to be provided to html with id=game.
+        // var html = "<p>What food am I thinking?</p>" +
+        //     "<p>Current Word</p>" +
+        //     "<p>" + currWordDisplay + "</p>" +
+        //     "<p> _________________________ </p>" +
+        //     "<p>Wins: " + scoreWin + "</p>" +
+        //     "<p>Losses: " + scoreLoss + "</p>" +
+        //     "<p>Guesses Left: " + guessesLeft + "</p>" +
+        //     "<p>Your guesses so far: " + prevGuesses + "</p>";
+
+        // //Set id game to be html variable.
+        // document.querySelector('#game').innerHTML = html;
 
     } else if (gameInitiated === true) {
         for (var i = 0; i < currWordArray.length; i++) {
@@ -66,18 +70,24 @@ document.onkeyup = function () {
                 currWordRevealed[i] = currWordArray[i];
             }
         }
-        //setting word display to black to avoid writing ontop of itself.
-        currWordDisplay = "";
+        console.log(currWordRevealed);
 
+        //Output to be displayed.
+        currWordDisplay = ""; //setting word display to black to avoid writing ontop of itself.
         for (var j = 0; j < currWordRevealed.length; j++) {
             currWordDisplay += " " + currWordRevealed[j] + " ";
         }
         guessesLeft--;
-        console.log(currWordRevealed);
+        console.log(currWordDisplay);
 
+        outputDisplay();
 
     }
 
+}
+
+
+function outputDisplay() {
     //Setting information to be provided to html with id=game.
     var html = "<p>What food am I thinking?</p>" +
         "<p>Current Word</p>" +
@@ -88,10 +98,6 @@ document.onkeyup = function () {
         "<p>Guesses Left: " + guessesLeft + "</p>" +
         "<p>Your guesses so far: " + prevGuesses + "</p>";
 
-    //Modify variable html to include invalid entry statement.
-    if (potentialGuess.indexOf(userGuess) === -1) {
-        html += "<br><h4>Your entry is not a letter.</h4>"
-    }
 
     //Set id game to be html variable.
     document.querySelector('#game').innerHTML = html;
