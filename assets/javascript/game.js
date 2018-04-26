@@ -8,8 +8,8 @@ var potentialGuess = ["a", "b", "c", "d", "e",
     "z"];
 
 // var potentialWords = ["fish"];
-var potentialWords = ["fish", "beef", "chicken", "grape", "apple",
-    "herring", "sago", "tapioca", "flour", "lobster"];
+var potentialWords = ["fish", "pumpkin", "chicken", "lychee", "apple",
+    "borscht", "sago", "tapioca", "dumpling", "lobster"];
 
 
 //Creating variables for records.
@@ -32,7 +32,7 @@ currWordDisplay = getWordDisplay();
 
 
 // debugError()
-    console.log(selectedWord);
+// console.log(selectedWord);
 
 document.onkeyup = function () {
     //Storing user input as "userGuess" and turning it lower case for comparison.
@@ -52,9 +52,11 @@ document.onkeyup = function () {
         // console.log(currWordRevealed);
         if (goodGuess === true) { //Check to see if user should lose a guess.
             goodGuess = false;
+            play_hit_sound();
         } else {
             guessesLeft--;
             prevGuesses.push(" " + userGuess.toUpperCase());
+            play_miss_sound();
         }
 
         if (guessesLeft <= 0) { //Check to see if no more guesses are available to enter. User losses.
@@ -106,7 +108,6 @@ function getWordRevealed(selectedWord) {
 }
 
 function getWordDisplay() {
-
     // console.log("getWordDisplay initated.");
     currWordDisplay = ""; //setting word display to black to avoid writing ontop of itself.
     for (var j = 0; j < currWordRevealed.length; j++) {
@@ -146,4 +147,12 @@ function debugError() {
     console.log("currWordDisplay: " + currWordDisplay);
     console.log("selectedWord: " + selectedWord);
     console.log("END VARIABLE DEBUGGER");
+}
+
+function play_miss_sound() {
+    document.getElementById('audioTagMiss').play();
+}
+
+function play_hit_sound() {
+    document.getElementById('audioTagHit').play();
 }
