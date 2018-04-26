@@ -41,12 +41,8 @@ document.onkeyup = function () {
     // console.log(userGuess); //Display for reference of user choice.
 
 
-    if (userGuess === " ") {
-        gameInitiated = true;
-        // console.log("Game initiated: " + gameInitiated);
-        outputDisplay();
-
-    } else if (gameInitiated === true) {
+    // console.log("Game initiated: " + gameInitiated);
+    if (gameInitiated === true) {
         for (var i = 0; i < currWordArray.length; i++) {
             if (userGuess === currWordArray[i]) {
                 currWordRevealed[i] = currWordArray[i];
@@ -54,7 +50,7 @@ document.onkeyup = function () {
             }
         }
 
-        console.log(currWordRevealed);
+        // console.log(currWordRevealed);
         if (goodGuess === true) { //Check to see if user should lose a guess.
             goodGuess = false;
         } else {
@@ -88,9 +84,10 @@ document.onkeyup = function () {
             // console.log("After reset");
             // debugError();
         }
-        console.log(currWordDisplay);
-        outputDisplay();
+
     }
+    gameInitiated = true;
+    outputDisplay();
 }
 
 function getNewWord() {
