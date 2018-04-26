@@ -7,8 +7,9 @@ var potentialGuess = ["a", "b", "c", "d", "e",
     "u", "v", "w", "x", "y",
     "z"];
 
-var potentialWords = ["fish"];
-// var potentialWords = ["fish", "beef", "chicken", "grape", "apple"];
+// var potentialWords = ["fish"];
+var potentialWords = ["fish", "beef", "chicken", "grape", "apple",
+    "herring", "sago", "tapioca", "flour", "lobster"];
 
 
 //Creating variables for records.
@@ -84,7 +85,6 @@ document.onkeyup = function () {
             // console.log("After reset");
             // debugError();
         }
-
     }
     gameInitiated = true;
     outputDisplay();
