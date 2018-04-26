@@ -26,15 +26,13 @@ var goodGuess = false;
 var currWordDisplay = "";
 var selectedWord = getNewWord()
 
+// debugError()
 currWordRevealed = getWordRevealed(selectedWord);
 currWordDisplay = getWordDisplay();
 
 
-debugError()
-// console.log(currWordArray);
-// console.log(currWordRevealed);
-// console.log(currWordDisplay);
-// console.log("Game initiated: " + gameInitiated);
+// debugError()
+    console.log(selectedWord);
 
 document.onkeyup = function () {
     //Storing user input as "userGuess" and turning it lower case for comparison.
@@ -93,7 +91,6 @@ document.onkeyup = function () {
 function getNewWord() {
     // console.log("getNewWord initated.");
     selectedWord = potentialWords[Math.floor(Math.random() * potentialWords.length)];
-    console.log(selectedWord);
     return selectedWord;
 }
 
@@ -105,13 +102,12 @@ function getWordRevealed(selectedWord) {
         currWordArray.push(selectedWord.charAt(i));
         currWordRevealed.push("_");
     }
-    console.log(currWordRevealed);
     return currWordRevealed;
 }
 
 function getWordDisplay() {
 
-    console.log("getWordDisplay initated.");
+    // console.log("getWordDisplay initated.");
     currWordDisplay = ""; //setting word display to black to avoid writing ontop of itself.
     for (var j = 0; j < currWordRevealed.length; j++) {
         currWordDisplay += "  " + currWordRevealed[j] + "  ";
@@ -122,9 +118,9 @@ function getWordDisplay() {
 //Setting information to be provided to html with id=game.
 function outputDisplay() {
     // console.log("outputDisplay initated.");
-    var html = "<p>What food am I thinking?</p>" +
+    var html = "<h2>What food am I thinking?</h2>" +
         "<p>Current Word</p>" +
-        "<h3>" + currWordDisplay + "</h3>" +
+        "<h2>" + currWordDisplay + "</h2>" +
         "<p> _________________________ </p>" +
         "<p>Wins: " + scoreWin + "</p>" +
         "<p>Losses: " + scoreLoss + "</p>" +
